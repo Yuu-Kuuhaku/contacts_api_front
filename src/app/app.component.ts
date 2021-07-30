@@ -78,7 +78,14 @@ export class AppComponent {
             count += 1;
         }
       };
-      this.excelService.exportAsExcelFile(arrayJson, this.form.controls.file.value?.name, this.form.controls.converterType.value );
+      try{
+
+        this.excelService.exportAsExcelFile(arrayJson, this.form.controls.file.value?.name, this.form.controls.converterType.value );
+        
+      }
+      catch(error){
+        alert(error);
+      }
     };
 
     reader.onerror = (event) => {
