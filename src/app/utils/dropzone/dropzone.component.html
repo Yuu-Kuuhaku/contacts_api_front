@@ -1,0 +1,27 @@
+<div style="top: 3%;left: 1%;width: 95%; height: 5%; margin-top: 20px !important; margin-left: 17px !important; margin-bottom: 20px;
+border : 1px solid #c8c8c8 !important;">
+	<ngx-dropzone [id]="id" (change)="onSelect($event)" [multiple]="isMultiple" [accept]="accept">
+		<ngx-dropzone-label>
+			<section style="position: relative; width: 50%; margin: 0 auto;">
+				<div>
+					<ngx-dropzone-label><i class="pi pi-cloud-upload" style="font-size: 5em;"></i></ngx-dropzone-label>
+				</div>
+			</section>
+			Arraste e solte os arquivos aqui ou clique para enviar
+		</ngx-dropzone-label>
+		<span *ngFor="let f of files">
+			<ngx-dropzone-image-preview *ngIf="f.type.includes('image')" ngProjectAs="ngx-dropzone-preview"
+				[removable]="true" (removed)="onRemove(f)" [file]="f">
+			</ngx-dropzone-image-preview>
+			<ngx-dropzone-video-preview *ngIf="f.type.includes('video')" ngProjectAs="ngx-dropzone-preview"
+				[removable]="true" (removed)="onRemove(f)" [file]="f">
+			</ngx-dropzone-video-preview>
+			<ngx-dropzone-preview *ngIf="!f.type.includes('image') && !f.type.includes('video')" [removable]="true"
+				(removed)="onRemove(f)">
+				<ngx-dropzone-label class="" style="word-break: break-all;" >
+					<span>{{ f.name }}</span>
+				</ngx-dropzone-label>
+			</ngx-dropzone-preview>
+		</span>
+	</ngx-dropzone>
+</div>

@@ -1,0 +1,21 @@
+#div-de-fora {
+  width: 100%; /* ou 300px */
+  height: 300px;
+}
+
+#div-do-dropzone {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#div-do-dropzone .dropzone-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+#div-do-dropzone .dropzone-wrapper img {
+  width: 100%;
+  height: auto;
+  /* redimensiona imagens automaticamente */
+}
