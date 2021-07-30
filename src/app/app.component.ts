@@ -21,8 +21,14 @@ export class AppComponent {
     })
   }
   onFileChange(ev: any[]){
-    console.log(ev)
+    
     this.form.controls.file.patchValue(ev[0]);
+  }
+  onFileRemove(ev: any[]){
+    if(ev === this.form.controls.file.value){
+      this.form.controls.file.setValue(null);
+      this.form.updateValueAndValidity();
+    }
   }
 
   save(){
@@ -35,9 +41,9 @@ export class AppComponent {
     reader.onload = (event) => {
 
       const file: any = event?.target?.result;
-      console.log(file)
+
       let allLines= file.split(/\r\n|\n/);
-      console.log(allLines)
+
 
       let count = 0;
       // Reading line by line
@@ -54,16 +60,12 @@ export class AppComponent {
           let nextLineCount = count + 1;
 
           let nextLine = allLines[nextLineCount];
-          while(nextLine.length !== 78 && !nextLine.trim().match(/^\d/gm)) {
+          while(nextLine.length !== 78 || !nextLine.trim().match(/^\d/gm)) {
               nextLineCount++;
               nextLine = allLines[nextLineCount];
           }
-
           let valor = nextLine.substring(40, 54).trim();
-
-          console.log(`${count}, ${contrato}, ${dataLancamento}, ${dataRemessa}, ${lancamentos}, ${valor}`)
-          console.log(' ')
-          console.log(' ')
+          
           count = (nextLineCount + 1);
           arrayJson.push({
             contrato,
@@ -76,7 +78,6 @@ export class AppComponent {
             count += 1;
         }
       };
-      console.log(arrayJson);
       this.excelService.exportAsExcelFile(arrayJson, this.form.controls.file.value?.name, this.form.controls.converterType.value );
     };
 

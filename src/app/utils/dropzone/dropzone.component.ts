@@ -9,6 +9,7 @@ export class DropzoneComponent implements OnInit {
 
   files: File[] = [];
   @Output() addFileEvent = new EventEmitter<File[]>();
+  @Output() removeFileEvent = new EventEmitter<File[]>();
   @Input() isMultiple = true;
   @Input() accept = '*';
   @Input() valueInitial = 0;
@@ -41,8 +42,9 @@ export class DropzoneComponent implements OnInit {
   }
 
   onRemove(event: any) {
-
+    console.log(event)
     this.files.splice(this.files.indexOf(event), 1);
+    this.removeFileEvent.emit(event);
   }
 
   makeString() {
