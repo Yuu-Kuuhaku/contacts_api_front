@@ -6,12 +6,12 @@ import { NotFoundComponent } from './utils/pages/not-found/not-found.component';
 const routes: Routes = [
   {
     path: '',
-    component: NotFoundComponent,
+    component: ConverterComponent,
   },
-  {
-    path: 'conversor',
-    component: ConverterComponent
-  },
+  // {
+  //   path: 'conversor',
+  //   component: ConverterComponent
+  // },
   {
     path: '**',
     component: NotFoundComponent,
