@@ -15,9 +15,15 @@ export class ExcelService {
 
   public exportAsExcelFile(json: any[], excelFileName: string, bookType: BookType): void {
     
-    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
-    console.log('worksheet',worksheet);
-    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+    let Sheets: any = {};
+    let SheetNames: string[] = [];
+    json.forEach((element) => {
+      Sheets[element.name] = XLSX.utils.json_to_sheet(element.values);
+      SheetNames.push(element.name)
+    })
+    // let worksheets: XLSX.WorkSheet[] = json.map(element => XLSX.utils.json_to_sheet(json));
+    // console.log('worksheet',worksheet);
+    const workbook: XLSX.WorkBook = { Sheets, SheetNames };
     const excelBuffer: any = XLSX.write(workbook, { bookType , type: 'array' });
     //const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'buffer' });
     this.saveAsExcelFile(excelBuffer, excelFileName, bookType);
