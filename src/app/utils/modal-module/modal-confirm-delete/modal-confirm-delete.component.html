@@ -1,0 +1,15 @@
+
+  <h2 mat-dialog-title>Deseja deletar registro?</h2>
+  <!-- <mat-dialog-content class="mb-3">
+      Esta ação exclui o registro e todos os dados vinculados a ele.
+  </mat-dialog-content> -->
+  <mat-dialog-actions align="end" style="min-width: 300px">
+      <button type="button" mat-stroked-button class="mx-2" (click)="close()" data-dismiss="modal">
+        <i class="fas fa-fw fa-times"></i>
+        Cancelar
+      </button>
+      <button type="button" mat-raised-button color="warn" class="text-white" (click)="save()">
+        <i class="fas fa-fw fa-trash-alt"></i>
+        Deletar
+      </button>
+  </mat-dialog-actions>

@@ -8,6 +8,6 @@ import { ExcelService } from './_services/excel.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'lcm-converter';
- 
+  title = 'contacts-api';
+
 }

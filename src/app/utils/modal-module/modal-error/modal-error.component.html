@@ -1,0 +1,16 @@
+<h2 mat-dialog-title *ngIf="erro.status === 500">Erro interno do servidor </h2>
+<h2 mat-dialog-title *ngIf="erro.status === 0">Falha de conexão</h2>
+<mat-dialog-content class="mb-1">
+    <p class="font-weight-bold" *ngIf="erro.status === 500">Consulte o administrador do sistema para mais detalhes.</p>
+    <p  *ngIf="erro.status === 400">Mensagem: {{erro.error?.message || erro.error?.error}}</p>
+    <p  *ngIf="erro.status === 404">Mensagem: Não encontrado</p>
+    <p  *ngIf="erro.status === 0">Mensagem: Aplicação não consegue se conectar com o servidor</p>
+    <p  *ngIf="erro.status === 403">Mensagem: {{erro.error?.error || erro.error?.message}}</p>
+    <p  *ngIf="erro.status === 104">Mensagem: {{erro.error?.error || erro.error?.message}}</p>
+    <p  *ngIf="erro.status === 401">Mensagem: {{erro.error?.error || erro.error?.message}}</p>
+    <p  *ngIf="!erro.status && erro.status !== 0">Mensagem: Faça login com uma conta válida.</p>
+    <p>Código: {{erro.status ? erro.status : 104}}</p>
+</mat-dialog-content>
+<mat-dialog-actions class="d-block text-right">
+    <button  mat-raised-button (click)="close()" color="primary"> Ok </button>
+</mat-dialog-actions>

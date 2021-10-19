@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ConverterComponent } from './converter/converter.component';
+import { ContactsComponent } from './pages/contacts/contacts.component';
 import { NotFoundComponent } from './utils/pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ConverterComponent,
+    component: ContactsComponent,
   },
   // {
   //   path: 'conversor',

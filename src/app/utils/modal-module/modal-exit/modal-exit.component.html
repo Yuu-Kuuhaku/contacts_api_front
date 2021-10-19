@@ -1,0 +1,19 @@
+
+<mat-dialog-actions   class="w-100 m-0 mb-3 ">
+  <div class="example-spacer"></div>
+
+  <button  style="height: 100% !important;" mat-icon-button  (click)="close( false)"  > <mat-icon>close</mat-icon></button>
+</mat-dialog-actions>
+
+<mat-dialog-content  class="w-100 m-0 mb-3 mat-typography" style="overflow-y: auto">
+  <div class="">
+    <h2 mat-dialog-title > Deseja realmente sair? </h2>
+
+
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="warn" (click)="close(false)" class="mr-3"> Não </button>
+  <button mat-raised-button color="primary" (click)="close(true)" > Sim  </button>
+</mat-dialog-actions>

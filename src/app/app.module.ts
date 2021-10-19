@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,12 +19,24 @@ import { MatIconModule } from '@angular/material/icon'
 import { ConverterComponent } from './converter/converter.component';
 import { NotFoundModule } from './utils/pages/not-found/not-found.module';
 import { RouterModule } from '@angular/router';
+import { ContactsComponent } from './pages/contacts/contacts.component';
+import { Contacts_addComponent } from './pages/contacts_add/contacts_add.component';
+import { MatTableModule } from '@angular/material/table';
+import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { DatePipe, HashLocationStrategy, LocationStrategy, registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+import { getPtBrPaginatorIntl } from './utils/pt-br-label-paginator/pt-br-paginator-intl';
+import { InterceptorService } from './_services/interceptor.service';
 
+registerLocaleData(ptBr);
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     ConverterComponent,
+    ContactsComponent,
+    Contacts_addComponent
    ],
   imports: [
     BrowserModule,
@@ -42,9 +54,21 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     MatIconModule,
     NotFoundModule,
-    RouterModule
+    RouterModule,
+    MatTableModule,
+    MatPaginatorModule,
+    HttpClientModule,
+    MatIconModule,
   ],
-  providers: [],
+  providers: [
+    HttpClientModule,
+    { provide: LOCALE_ID, useValue: 'pt-br' },
+    { provide: MatPaginatorIntl, useValue: getPtBrPaginatorIntl() },
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
